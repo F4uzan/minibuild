@@ -20,7 +20,6 @@
 # -clean-cache	: Clears ccache
 # -cm		: Use "make bacon" instead of "make otapackage" for compiling
 # -lastconfig	: Use last known configuration (device model, etc) and parameters
-# -jX		: Specify core counts, not supported for -cm parameter
 
 if [ $1 == "help" ]; then
 	echo
@@ -43,7 +42,6 @@ if [ $1 == "help" ]; then
 	echo '-clean-cache	: Clears ccache'
 	echo '-cm		: Use "make bacon" instead of "make otapackage" for compiling'
 	echo "-lastconfig	: Use last known configuration '(device model, etc)' and parameters"
-	echo '-jX		: Specify core counts, not supported for -cm parameter'
 	echo
 else
 	# Check for parameters
