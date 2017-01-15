@@ -2,7 +2,7 @@
 # Minibuild, a tiny build script for everyone
 # Written by F4uzan with the help of others
 # Credits to Michael S Corigliano (Mike Criggs) (michael.s.corigliano@gmail.com) for "Fuck Jack" build script
-# Licensed under GPLv2 (as per the license of "Fuck Jack"), see LICENSE for more information
+# Licensed under GPLv2, see LICENSE for more information
 #
 # Usage:
 # bash build.sh <COMMAND> <PARAMETERS> <DEVICE>
@@ -23,8 +23,8 @@
 
 if [ $1 == "help" ]; then
 	echo
-	echo NoJack Build Script
-	echo ---------------------
+	echo Minibuild Build Script
+	echo ----------------------
 	echo
 	echo Usage:
 	echo bash build.sh '<COMMAND> <PARAMETERS> <DEVICE>'
