@@ -7,6 +7,11 @@ echo ---------------
 echo
 echo Make sure this file and the whole repository of Minibuild is cloned / placed in "minibuild" folder in the root of your ROM source.
 echo
+if [ -e ../build.sh ]; then
+	echo build.sh already exist in ROM source, stopping installation.
+	echo Please delete or rename existing build.sh in your ROM source.
+	exit
+fi
 echo Configuring Minibuild...
 sleep 2
 clear
