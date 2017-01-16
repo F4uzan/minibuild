@@ -28,7 +28,7 @@ if [ $1 == "help" ]; then
 	echo '-clean		: Make a clean build before continuing'
 	echo '-clean-cache	: Clears ccache'
 	echo '-cm		: Use "make bacon" instead of "make otapackage" for compiling'
-	echo "-uconfig		: Load parameters from configuration file"
+	echo "-uconfig	: Load parameters from configuration file"
 	echo
 else
 	# Check for parameters
