@@ -2,6 +2,7 @@
 
 dir=".";
 
+echo
 echo Minibuild Setup
 echo ---------------
 echo
@@ -10,6 +11,7 @@ echo
 if [ -e ../build.sh ]; then
 	echo build.sh already exist in ROM source, stopping installation.
 	echo Please delete or rename existing build.sh in your ROM source.
+	echo
 	exit
 fi
 echo Configuring Minibuild...
@@ -37,3 +39,4 @@ echo $cm > $dir/cm
 cp build.sh ../build.sh
 sleep 2
 echo Installation done!
+echo
