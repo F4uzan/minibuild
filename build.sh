@@ -53,12 +53,14 @@ else
 	lunch $ROM_$DEVICE-$BUILD_TYPE
 
 	if [ $uconfig == "y" ]; then
+		echo Using predefined configuration
 		clean=$(cat minibuild/clean)
 		cleancache=$(cat minibuild/cleancache)
 		cm=$(cat minibuild/cm)
 	fi
 
 	if [ $NOJACK == "y" ]; then
+		echo Using NoJack for compilation
 		export USE_NINJA=false
 		rm -rf ~/.jack*
 		export ANDROID_JACK_VM_ARGS="-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
@@ -67,16 +69,20 @@ else
 	fi
 
 	if [ $clean == "y" ]; then
+		echo Running clean build
 		make clean
 	fi
 
 	if [ $cleancache == "y" ]; then
+		echo Clearing CCACHE
 		ccache -C
 	fi
 
 	if [ $cm == "y" ]; then
+		echo Using Lineage compatible mode
 		make bacon
 	else
+		echo Using AOSP compatible mode
 		make -j4 otapackage
 	fi
 fi
