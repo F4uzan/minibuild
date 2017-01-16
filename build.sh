@@ -4,7 +4,7 @@
 # Credits to Michael S Corigliano (Mike Criggs) (michael.s.corigliano@gmail.com) for "Fuck Jack" build script
 # Licensed under GPLv2, see LICENSE for more information
 
-ROM=$(cat minibuild/rom)
+ROM_PREFIX=$(cat minibuild/rom)
 BUILD_TYPE=$(cat minibuild/build_type)
 NOJACK=$(cat minibuild/nojack)
 
@@ -50,7 +50,7 @@ else
 
 	# Actually build now
 	source build/envsetup.sh
-	lunch $ROM_$DEVICE-$BUILD_TYPE
+	lunch "$ROM_PREFIX"_$DEVICE-$BUILD_TYPE
 
 	if [ $uconfig == "y" ]; then
 		echo Using predefined configuration
