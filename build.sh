@@ -4,9 +4,9 @@
 # Credits to Michael S Corigliano (Mike Criggs) (michael.s.corigliano@gmail.com) for "Fuck Jack" build script
 # Licensed under GPLv2, see LICENSE for more information
 
-ROM = $(cat minibuild/rom)
-BUILD_TYPE = $(cat minibuild/build_type)
-NOJACK= $(cat minibuild/nojack)
+ROM=$(cat minibuild/rom)
+BUILD_TYPE=$(cat minibuild/build_type)
+NOJACK=$(cat minibuild/nojack)
 
 if [ $1 == "help" ]; then
 	echo
