@@ -21,6 +21,10 @@
 # -cm		: Use "make bacon" instead of "make otapackage" for compiling
 # -lastconfig	: Use last known configuration (device model, etc) and parameters
 
+ROM = $(cat minibuild/rom)
+BUILD_TYPE = $(cat minibuild/build_type)
+NOJACK= $(cat minibuild/nojack)
+
 if [ $1 == "help" ]; then
 	echo
 	echo Minibuild Build Script
@@ -69,6 +73,14 @@ else
 		clean=$(cat minibuild/clean)
 		cleancache=$(cat minibuild/cleancache)
 		cm=$(cat minibuild/cm)
+	fi
+
+	if [ $NOJACK == true ]; then
+		export USE_NINJA=false
+		rm -rf ~/.jack*
+		export ANDROID_JACK_VM_ARGS="-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
+		./prebuilts/sdk/tools/jack-admin kill-server
+		./prebuilts/sdk/tools/jack-admin start-server
 	fi
 
 	if [ $clean == true ]; then
