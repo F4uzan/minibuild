@@ -3,23 +3,6 @@
 # Written by F4uzan with the help of others
 # Credits to Michael S Corigliano (Mike Criggs) (michael.s.corigliano@gmail.com) for "Fuck Jack" build script
 # Licensed under GPLv2, see LICENSE for more information
-#
-# Usage:
-# bash build.sh <COMMAND> <PARAMETERS> <DEVICE>
-#
-# Available commands:
-#
-# build		: Compiles ROM
-# help		: Open up this help page
-#
-#
-#
-# Available parameters:
-#
-# -clean	: Make a clean build before continuing
-# -clean-cache	: Clears ccache
-# -cm		: Use "make bacon" instead of "make otapackage" for compiling
-# -lastconfig	: Use last known configuration (device model, etc) and parameters
 
 ROM = $(cat minibuild/rom)
 BUILD_TYPE = $(cat minibuild/build_type)
