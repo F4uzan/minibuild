@@ -52,13 +52,13 @@ else
 	while test $# -gt 0
 	do
     		case "$2" in
-        		-clean) clean=true
+        		-clean) clean=y
             		;;
-        		-clean-cache) cleancache=true
+        		-clean-cache) cleancache=y
             		;;
-			-cm) cm=true
+			-cm) cm=y
 			;;
-			-uconfig) uconfig=true
+			-uconfig) uconfig=y
 			;;
     		esac
 		DEVICE="$@"
@@ -69,13 +69,13 @@ else
 	source build/envsetup.sh
 	echo lunch $ROM_$DEVICE-$BUILD_TYPE
 
-	if [ $uconfig == true ]; then
+	if [ $uconfig == "y" ]; then
 		clean=$(cat minibuild/clean)
 		cleancache=$(cat minibuild/cleancache)
 		cm=$(cat minibuild/cm)
 	fi
 
-	if [ $NOJACK == true ]; then
+	if [ $NOJACK == "y" ]; then
 		export USE_NINJA=false
 		rm -rf ~/.jack*
 		export ANDROID_JACK_VM_ARGS="-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
@@ -83,15 +83,15 @@ else
 		./prebuilts/sdk/tools/jack-admin start-server
 	fi
 
-	if [ $clean == true ]; then
+	if [ $clean == "y" ]; then
 		make clean
 	fi
 
-	if [ $cleancache == true ]; then
+	if [ $cleancache == "y" ]; then
 		ccache -C
 	fi
 
-	if [ $cm == true ]; then
+	if [ $cm == "y" ]; then
 		make bacon
 	else
 		make -j4 otapackage
