@@ -50,7 +50,7 @@ else
 
 	# Actually build now
 	source build/envsetup.sh
-	echo lunch $ROM_$DEVICE-$BUILD_TYPE
+	lunch $ROM_$DEVICE-$BUILD_TYPE
 
 	if [ $uconfig == "y" ]; then
 		clean=$(cat minibuild/clean)
