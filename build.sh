@@ -45,7 +45,7 @@ if [ $1 == "help" ]; then
 	echo '-clean		: Make a clean build before continuing'
 	echo '-clean-cache	: Clears ccache'
 	echo '-cm		: Use "make bacon" instead of "make otapackage" for compiling'
-	echo "-lastconfig	: Use last known configuration '(device model, etc)' and parameters"
+	echo "-uconfig		: Load parameters from configuration file"
 	echo
 else
 	# Check for parameters
@@ -58,7 +58,7 @@ else
             		;;
 			-cm) cm=true
 			;;
-			-lastconfig) lastconfig=true
+			-uconfig) uconfig=true
 			;;
     		esac
 		DEVICE="$@"
@@ -69,7 +69,7 @@ else
 	source build/envsetup.sh
 	echo lunch $ROM_$DEVICE-$BUILD_TYPE
 
-	if [ $lastconfig == "true" ]; then
+	if [ $uconfig == true ]; then
 		clean=$(cat minibuild/clean)
 		cleancache=$(cat minibuild/cleancache)
 		cm=$(cat minibuild/cm)
