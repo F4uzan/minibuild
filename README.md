@@ -1,3 +1,5 @@
 # Minibuild
 
-A tiny build script that compiles your ROM without hassle. Currently not working, don't use!
+A tiny build script that compiles your ROM without hassle.
+
+*insert more placeholder text here*
