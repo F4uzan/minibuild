@@ -66,7 +66,7 @@ else
 		cm=$(cat minibuild/cm)
 	fi
 
-	if [ $NOJACK == "y" ]; then
+	if [[ $NOJACK == "y" ]]; then
 		echo Using NoJack for compilation
 		export USE_NINJA=false
 		rm -rf ~/.jack*
@@ -75,17 +75,17 @@ else
 		./prebuilts/sdk/tools/jack-admin start-server
 	fi
 
-	if [ $clean == "y" ]; then
+	if [[ $clean == "y" ]]; then
 		echo Running clean build
 		make clean
 	fi
 
-	if [ $cleancache == "y" ]; then
+	if [[ $cleancache == "y" ]]; then
 		echo Clearing CCACHE
 		ccache -C
 	fi
 
-	if [ $cm == "y" ]; then
+	if [[ $cm == "y" ]]; then
 		echo Using Lineage compatible mode
 		make bacon
 	else
