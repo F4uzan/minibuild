@@ -6,8 +6,14 @@
 
 ROM_PREFIX=$(cat minibuild/rom)
 BUILD_TYPE=$(cat minibuild/build_type)
-CORES=$(cat minibuild/cores)
+CORES_FILE=$(cat minibuild/cores)
 NOJACK=$(cat minibuild/nojack)
+
+if [ -e $CORES_FILE ]; then
+CORES=$CORES_FILE
+else
+CORES=4
+fi
 
 if [ $1 == "help" ]; then
 	echo
