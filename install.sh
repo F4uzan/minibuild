@@ -20,7 +20,7 @@ clear
 echo Configure Minibuild
 echo -------------------
 echo
-read -p "ROM prefix (du_, slim_, omni_, etc): " ROM
+read -p "ROM prefix (du, slim, omni, cm etc): " ROM
 read -p "Build type (userdebug, user, debug): " BUILD_TYPE
 echo
 read -p "Automatically run 'make clean' when starting a build [Y/n]? " clean
