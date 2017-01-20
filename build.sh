@@ -59,7 +59,7 @@ else
 	source build/envsetup.sh
 	lunch "$ROM_PREFIX"_$DEVICE-$BUILD_TYPE
 
-	if [ $uconfig == "y" ]; then
+	if [[ $uconfig == "y" ]]; then
 		echo Using predefined configuration
 		clean=$(cat minibuild/clean)
 		cleancache=$(cat minibuild/cleancache)
