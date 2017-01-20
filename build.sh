@@ -6,6 +6,7 @@
 
 ROM_PREFIX=$(cat minibuild/rom)
 BUILD_TYPE=$(cat minibuild/build_type)
+CORES=$(cat minibuild/cores)
 NOJACK=$(cat minibuild/nojack)
 
 if [ $1 == "help" ]; then
@@ -83,6 +84,6 @@ else
 		make bacon
 	else
 		echo Using AOSP compatible mode
-		make -j4 otapackage
+		make -j$CORES otapackage
 	fi
 fi

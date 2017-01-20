@@ -22,6 +22,7 @@ echo -------------------
 echo
 read -p "ROM prefix (du, slim, omni, cm etc): " ROM
 read -p "Build type (userdebug, user, debug): " BUILD_TYPE
+read -p "Number of cores at compilation      : " CORES
 echo
 read -p "Automatically run 'make clean' when starting a build [Y/n]? " clean
 read -p "Clear CCACHE when starting a build [y/N]? " cleancache
@@ -32,6 +33,7 @@ echo Installing configuration...
 echo
 echo $ROM > $dir/rom
 echo $BUILD_TYPE > $dir/build_type
+echo $CORES > $dir/cores
 echo $nojack > $dir/nojack
 echo $clean > $dir/clean
 echo $cleancache > $dir/cleancache
