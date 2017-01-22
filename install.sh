@@ -38,7 +38,7 @@ echo $nojack > $dir/nojack
 echo $clean > $dir/clean
 echo $cleancache > $dir/cleancache
 echo $cm > $dir/cm
-cp build.sh ../build.sh
+ln -s $PWD/build.sh ../build.sh
 sleep 2
 echo Installation done!
 echo
