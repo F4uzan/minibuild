@@ -27,7 +27,7 @@ echo
 read -p "Automatically run 'make clean' when starting a build [Y/n]? " clean
 read -p "Clear CCACHE when starting a build [y/N]? " cleancache
 read -p "Use CM / LineageOS (or Lineage-based) compatibility mode [y/N]? " cm
-read -p "EXPERIMENTAL: Enable NoJack workaround for Jack compiler [y/N]? " nojack
+read -p "EXPERIMENTAL: Enable out-of-memory workaround for Jack compiler [y/N]? " nojack
 echo
 echo Installing configuration...
 echo

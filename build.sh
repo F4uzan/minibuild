@@ -67,7 +67,7 @@ else
 	fi
 
 	if [[ $NOJACK == "y" ]]; then
-		echo Using NoJack for compilation
+		echo Enabling fixes for Jack compilation
 		export USE_NINJA=false
 		rm -rf ~/.jack*
 		export ANDROID_JACK_VM_ARGS="-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
