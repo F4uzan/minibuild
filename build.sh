@@ -46,10 +46,10 @@ else
             		;;
         		-clean-cache) cleancache=y
             		;;
-			-cm) cm=y
-			;;
-			-uconfig) uconfig=y
-			;;
+				-cm) cm=y
+					;;
+				-uconfig) uconfig=y
+					;;
     		esac
 		DEVICE="$@"
 	shift
