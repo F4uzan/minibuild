@@ -4,6 +4,11 @@
 # Credits to Michael S Corigliano (Mike Criggs) (michael.s.corigliano@gmail.com) for "Fuck Jack" build script
 # Licensed under GPLv2, see LICENSE for more information
 
+if [ ! -d minibuild ]; then
+	echo Minibuild configuration folder cannot be found!
+	echo Please properly install Minibuild using the installation script and then try again
+	exit
+fi
 ROM_PREFIX=$(cat minibuild/rom)
 BUILD_TYPE=$(cat minibuild/build_type)
 CORES_FILE=minibuild/cores
