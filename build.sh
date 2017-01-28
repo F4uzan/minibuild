@@ -5,8 +5,10 @@
 # Licensed under GPLv2, see LICENSE for more information
 
 if [ ! -d minibuild ]; then
+	echo
 	echo Minibuild configuration folder cannot be found!
 	echo Please properly install Minibuild using the installation script and then try again
+	echo
 	exit
 fi
 ROM_PREFIX=$(cat minibuild/rom)
