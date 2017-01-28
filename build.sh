@@ -73,7 +73,9 @@ else
 		export ANDROID_JACK_VM_ARGS="-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
 		./prebuilts/sdk/tools/jack-admin kill-server
 		./prebuilts/sdk/tools/jack-admin start-server
-	fi
+	fi	
+	
+	echo Using $CORES cores for compilation
 
 	if [[ $clean == "y" ]]; then
 		echo Running clean build
