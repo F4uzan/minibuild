@@ -34,7 +34,7 @@ if [ $1 == "help" ]; then
 	echo
 	echo 'build		: Compiles ROM'
 	echo 'help		: Open up this help page'
-	echo 'config		: Open or create a new configuration for the script'
+	echo 'config		: Create a new configuration for the script'
 	echo
 	echo
 	echo Available parameters:
@@ -44,7 +44,7 @@ if [ $1 == "help" ]; then
 	echo '-cm		: Use "make bacon" instead of "make otapackage" for compiling'
 	echo "-uconfig	: Load parameters from configuration file"
 	echo
-else
+elif [ $1 == "build" ]; then
 	# Check for parameters
 	while test $# -gt 0
 	do
@@ -101,4 +101,11 @@ else
 		echo Using AOSP compatible mode
 		make -j$CORES otapackage
 	fi
+elif [ $1 == "config" ]; then
+	bash minibuild/install.sh
+else
+	echo
+	echo Command not found: $1
+	echo Type "build.sh help" for the list of commands
+	echo
 fi
