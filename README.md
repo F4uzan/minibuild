@@ -6,7 +6,7 @@ A tiny build script that compiles your ROM without hassle.
 
 1.) Clone or download Minibuild's repository to your ROM source tree, alternatively, you can also use repo:
 
-	<project path="minibuild" name="F4uzan/minibuild" remote="github" />
+	<project path="minibuild" name="F4uzan/minibuild" remote="github" revision="master" />
 
 With remote GitHub being:
 
