@@ -2,17 +2,26 @@
 
 dir=".";
 
+if [ $1 == config ]; then
+	dir="$PWD/minibuild";
+fi
+
 echo
 echo Minibuild Setup
 echo ---------------
 echo
 echo Make sure this file and the whole repository of Minibuild is cloned / placed in "minibuild" folder in the root of your ROM source.
 echo
+if [ $1 == config ]; then
+	echo Removing previous build.sh
+	rm ../build.sh
+else
 if [ -L ../build.sh ]; then
 	echo build.sh already exist in ROM source, stopping installation.
 	echo Please delete or rename existing build.sh in your ROM source.
 	echo
 	exit
+fi
 fi
 echo Configuring Minibuild...
 sleep 2
@@ -38,7 +47,11 @@ echo $nojack > $dir/nojack
 echo $clean > $dir/clean
 echo $cleancache > $dir/cleancache
 echo $cm > $dir/cm
-ln -s $PWD/build.sh ../build.sh
+if [ $1 == config ]; then
+	ln -s $dir/build.sh ../build.sh
+else
+	ln -s $PWD/build.sh ../build.sh
+fi
 sleep 2
 echo Installation done!
 echo

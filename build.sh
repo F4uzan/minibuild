@@ -102,7 +102,7 @@ elif [ $1 == "build" ]; then
 		make -j$CORES otapackage
 	fi
 elif [ $1 == "config" ]; then
-	bash minibuild/install.sh
+	bash minibuild/install.sh config
 else
 	echo
 	echo Command not found: $1
