@@ -124,6 +124,6 @@ elif [ $1 == "config" ]; then
 else
 	echo
 	echo Command not found: $1
-	echo Type "build.sh help" for the list of commands
+	echo Type "bash build.sh help" for the list of commands
 	echo
 fi
