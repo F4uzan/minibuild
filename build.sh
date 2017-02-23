@@ -11,15 +11,33 @@ if [ ! -d minibuild ]; then
 	echo
 	exit
 fi
-ROM_PREFIX=$(cat minibuild/rom)
-BUILD_TYPE=$(cat minibuild/build_type)
+ROM_PREFIX_FILE=minibuild/rom
+BUILD_TYPE_FILE=minibuild/build_type
 CORES_FILE=minibuild/cores
-NOJACK=$(cat minibuild/nojack)
+NOJACK_FILE=minibuild/nojack
+
+if [ -e $ROM_PREFIX_FILE ]; then
+	ROM_PREFIX=$(cat $ROM_PREFIX_FILE)
+else
+	ROM_PREFIX=""
+fi
+
+if [ -e $BUILD_TYPE_FILE ]; then
+	BUILD_TYPE=$(cat $BUILD_TYPE_FILE)
+else
+	BUILD_TYPE=""
+fi
 
 if [ -e $CORES_FILE ]; then
 	CORES=$(cat $CORES_FILE)
 else
 	CORES=4
+fi
+
+if [ -e $NOJACK_FILE ]; then
+	NOJACK=$(cat $NOJACK_FILE)
+else
+	NOJACK=""
 fi
 
 if [ $1 == "help" ]; then
