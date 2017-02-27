@@ -86,7 +86,7 @@ elif [ $1 == "build" ]; then
 
 	if [[ $uconfig == "y" ]]; then
 		echo Using predefined configuration
-		clean=$(cat $)
+		clean=$(cat minibuild/clean)
 		cleancache=$(cat minibuild/cleancache)
 		cm=$(cat minibuild/cm)
 	fi
