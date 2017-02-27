@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir="."
+dir=".";
 
 if [ $1 == config ]; then
 	dir="$PWD/minibuild";
