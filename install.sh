@@ -29,8 +29,8 @@ clear
 echo Configure Minibuild
 echo -------------------
 echo
-read -p "ROM prefix (du, slim, omni, cm etc)     : " ROM
-read -p "Build type (userdebug, user, debug)     : " BUILD_TYPE
+read -p "ROM prefix (du, slim, omni, aokp)     : " ROM
+read -p "Build type (userdebug, user, eng)     : " BUILD_TYPE
 read -p "Number of CPU cores used at compilation : " CORES
 echo
 read -p "Automatically run 'make clean' when starting a build [Y/n]? " clean
