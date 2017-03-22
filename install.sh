@@ -5,6 +5,10 @@ dir=".";
 if [ $1 == config ]; then
 	dir="$PWD/minibuild";
 fi
+if [ $1 == configexp ]; then
+	dir="$PWD/minibuild";
+	configexp=true
+fi
 
 echo
 echo Minibuild Setup
@@ -28,7 +32,13 @@ sleep 2
 clear
 echo Configure Minibuild
 echo -------------------
+if [ $configexp == "true" ]; then
+	echo Experimental mode
+fi
 echo
+if [ $configexp == "true" ]; then
+	read -p "Target device for compilation	  	: " DEVICE
+fi
 read -p "ROM prefix (du, slim, omni, aokp)     : " ROM
 read -p "Build type (userdebug, user, eng)     : " BUILD_TYPE
 read -p "Number of CPU cores used at compilation : " CORES
@@ -40,15 +50,30 @@ read -p "EXPERIMENTAL: Enable out-of-memory workaround for Jack compiler [y/N]? 
 echo
 echo Installing configuration...
 echo
-echo $ROM > $dir/rom
-echo $BUILD_TYPE > $dir/build_type
-echo $CORES > $dir/cores
-echo $nojack > $dir/nojack
-echo $clean > $dir/clean
-echo $cleancache > $dir/cleancache
-echo $cm > $dir/cm
+if [ $configexp == "true" ]; then
+	if [ ! -d $dir/$DEVICE ]; then
+		mkdir $dir/$DEVICE
+	fi
+	echo $ROM > $dir/$DEVICE/rom
+	echo $BUILD_TYPE > $dir/$DEVICE/build_type
+	echo $CORES > $dir/config/cores
+	echo $nojack > $dir/config/nojack
+	echo $clean > $dir/config/clean
+	echo $cleancache > $dir/config/cleancache
+	echo $cm > $dir/$DEVICE/cm
+else
+	echo $ROM > $dir/rom
+	echo $BUILD_TYPE > $dir/build_type
+	echo $CORES > $dir/cores
+	echo $nojack > $dir/nojack
+	echo $clean > $dir/clean
+	echo $cleancache > $dir/cleancache
+	echo $cm > $dir/cm
+fi
 if [ $1 == config ]; then
 	ln -s $dir/build.sh ../build.sh
+elif [ $1 == config ]; then
+	ln -s $dir/build.sh .../build.sh
 else
 	ln -s $PWD/build.sh ../build.sh
 fi

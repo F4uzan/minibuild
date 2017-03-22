@@ -121,6 +121,120 @@ elif [ $1 == "build" ]; then
 	fi
 elif [ $1 == "config" ]; then
 	bash minibuild/install.sh config
+elif [ $1 == "configexp" ]; then
+	bash minibuild/install.sh configexp
+elif [ $1 == "buildexp" ]; then
+	echo
+	echo This command is very experimental
+	echo Proceed with caution!
+	echo
+	if [ ! -d  $2 ]; then
+		echo Device configuration for $2 not found!
+		echo Please check the configuration at minibuild folder
+		echo Stopping build.
+		echo
+		exit
+	fi
+	
+	# Import the variables from  the newer configuration setup
+	# Requires the user to have made the new configuration through 'configexp'
+	DEVICE=$2
+	ROM_PREFIX_FILE=minibuild/$DEVICE/rom
+	BUILD_TYPE_FILE=minibuild/$DEVICE/build_type
+	CORES_FILE=minibuild/config/cores
+	NOJACK_FILE=minibuild/config/nojack
+	
+	if [ -e $ROM_PREFIX_FILE ]; then
+		ROM_PREFIX=$(cat $ROM_PREFIX_FILE)
+	else
+		# Yeah, no
+		echo
+		echo ROM prefix file not found!
+		echo Stopping build
+		echo
+		exit
+	fi
+	
+	if [ -e $BUILD_TYPE_FILE ]; then
+		BUILD_TYPE=$(cat $BUILD_TYPE_FILE)
+	else
+		# Not happening
+		echo
+		echo Build type file not found!
+		echo Stopping build
+		echo
+		exit
+	fi
+	
+	if [ -e $CORES_FILE ]; then
+		CORES=$(cat $CORES_FILE)
+	else
+		CORES=4
+	fi
+	
+	if [ -e $NOJACK_FILE ]; then
+		NOJACK=$(cat $NOJACK_FILE)
+	else
+		NOJACK=n
+	fi
+	
+	CLEAN_FILE=minibuild/config/clean
+	CLEANCACHE_FILE=minibuild/config/cleancache
+	CM_FILE=minibuild/$DEVICE/cm
+	
+	if [ -e $CLEAN_FILE ]; then
+		clean=$(cat $CLEAN_FILE)
+	else
+	# Assume everything here
+		clean=n
+	fi
+	
+	if [ -e $CLEANCACHE_FILE ]; then
+		cleancache=$(cat $CLEANCACHE_FILE)
+	else
+	# More assumptions!
+		cleancache=n
+	fi
+	
+	if [ -e $CM_FILE ]; then
+		cm=$(cat $CM_FILE)
+	else
+	# Yet another assumption
+		cm=n
+	fi
+	
+	# Actually build now
+	source build/envsetup.sh
+	lunch "$ROM_PREFIX"_$DEVICE-$BUILD_TYPE
+
+	if [[ $NOJACK == "y" ]]; then
+		echo Enabling fixes for Jack compilation
+		export USE_NINJA=false
+		rm -rf ~/.jack*
+		export ANDROID_JACK_VM_ARGS="-Xmx4g -Dfile.encoding=UTF-8 -XX:+TieredCompilation"
+		./prebuilts/sdk/tools/jack-admin kill-server
+		./prebuilts/sdk/tools/jack-admin start-server
+	fi
+
+	echo Using $CORES cores for compilation
+
+	if [[ $clean == "y" ]]; then
+		echo Running clean build
+		make clean
+	fi
+
+	if [[ $cleancache == "y" ]]; then
+		echo Clearing CCACHE
+		ccache -C
+	fi
+
+	if [[ $cm == "y" ]]; then
+		echo Using Lineage compatible mode
+		mka bacon
+	else
+		echo Using AOSP compatible mode
+		make -j$CORES otapackage
+	fi
 else
 	echo
 	echo Command not found: $1
