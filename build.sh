@@ -4,15 +4,40 @@
 # Credits to Michael S Corigliano (Mike Criggs) (michael.s.corigliano@gmail.com) for "Fuck Jack" build script
 # Licensed under GPLv2, see LICENSE for more information
 
-ROM_PREFIX=$(cat minibuild/rom)
-BUILD_TYPE=$(cat minibuild/build_type)
+if [ ! -d minibuild ]; then
+	echo
+	echo Minibuild configuration folder cannot be found!
+	echo Please properly install Minibuild using the installation script and then try again
+	echo
+	exit
+fi
+ROM_PREFIX_FILE=minibuild/rom
+BUILD_TYPE_FILE=minibuild/build_type
 CORES_FILE=minibuild/cores
-NOJACK=$(cat minibuild/nojack)
+NOJACK_FILE=minibuild/nojack
+
+if [ -e $ROM_PREFIX_FILE ]; then
+	ROM_PREFIX=$(cat $ROM_PREFIX_FILE)
+else
+	ROM_PREFIX=""
+fi
+
+if [ -e $BUILD_TYPE_FILE ]; then
+	BUILD_TYPE=$(cat $BUILD_TYPE_FILE)
+else
+	BUILD_TYPE=""
+fi
 
 if [ -e $CORES_FILE ]; then
 	CORES=$(cat $CORES_FILE)
 else
 	CORES=4
+fi
+
+if [ -e $NOJACK_FILE ]; then
+	NOJACK=$(cat $NOJACK_FILE)
+else
+	NOJACK=""
 fi
 
 if [ $1 == "help" ]; then
@@ -27,7 +52,7 @@ if [ $1 == "help" ]; then
 	echo
 	echo 'build		: Compiles ROM'
 	echo 'help		: Open up this help page'
-	echo 'config		: Open or create a new configuration for the script'
+	echo 'config		: Create a new configuration for the script'
 	echo
 	echo
 	echo Available parameters:
@@ -37,7 +62,7 @@ if [ $1 == "help" ]; then
 	echo '-cm		: Use "make bacon" instead of "make otapackage" for compiling'
 	echo "-uconfig	: Load parameters from configuration file"
 	echo
-else
+elif [ $1 == "build" ]; then
 	# Check for parameters
 	while test $# -gt 0
 	do
@@ -75,6 +100,8 @@ else
 		./prebuilts/sdk/tools/jack-admin start-server
 	fi
 
+	echo Using $CORES cores for compilation
+
 	if [[ $clean == "y" ]]; then
 		echo Running clean build
 		make clean
@@ -92,4 +119,11 @@ else
 		echo Using AOSP compatible mode
 		make -j$CORES otapackage
 	fi
+elif [ $1 == "config" ]; then
+	bash minibuild/install.sh config
+else
+	echo
+	echo Command not found: $1
+	echo Type "bash build.sh help" for the list of commands
+	echo
 fi

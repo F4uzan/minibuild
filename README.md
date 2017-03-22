@@ -4,9 +4,19 @@ A tiny build script that compiles your ROM without hassle.
 
 ## Installation
 
-1.) Clone or download Minibuild's repository to your ROM source tree, alternatively, you can also use repo:
+1.) Get Minibuild, there are two ways you can do this:
 
-	<project path="minibuild" name="F4uzan/minibuild" remote="github" />
+a.) Clone Minibuild using Git:
+
+	git clone https://github.com/F4uzan/minibuild.git minibuild
+
+Make sure you are in the root directory of your ROM source, for example:
+
+	/home/user/cyanogenmod
+
+b.) Use repo by adding the repository below to your local manifest:
+
+	<project path="minibuild" name="F4uzan/minibuild" remote="github" revision="master" />
 
 With remote GitHub being:
 
