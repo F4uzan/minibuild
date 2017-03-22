@@ -2,6 +2,13 @@
 
 A tiny build script that compiles your ROM without hassle.
 
+## Features
+
+- It builds your ROM
+- Uses "fuckjack" method of fixing Jack OOM issue
+- Easily configurable settings, swap out userdebug for user easily
+- More to come
+
 ## Installation
 
 1.) Get Minibuild, there are two ways you can do this:
