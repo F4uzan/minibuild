@@ -5,8 +5,7 @@ dir=".";
 
 if [ $1 == config ]; then
 	dir="$PWD/minibuild";
-fi
-if [ $1 == configexp ]; then
+elif [ $1 == configexp ]; then
 	dir="$PWD/minibuild";
 	configexp=true
 fi
