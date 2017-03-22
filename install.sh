@@ -1,4 +1,5 @@
 #!/bin/bash
+# Minibuild configuration and installation script
 
 dir=".";
 
